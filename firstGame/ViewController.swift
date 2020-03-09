@@ -28,19 +28,20 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var timerLabel: UILabel!
     
+    @IBOutlet weak var rackupMessage: UITextField!
+    
     @IBOutlet weak var sweetLabel: UIButton!
     
     @IBOutlet weak var saltyLabel: UIButton!
     
-    @IBOutlet weak var sweetImage: UIImageView!
-    
     @IBOutlet weak var saltyImage: UIImageView!
     
+    @IBOutlet weak var sweetImage: UIImageView!
     //actions
     
     @IBAction func mySubmit(_ sender: Any) {
         name = myName.text!
-        myGreeting.text = "Hi \(name), are you sweet or salty?"
+        myGreeting.text = "Hi \(name), will you get chips or candy?"
         myName.resignFirstResponder()
     }
     
@@ -59,8 +60,8 @@ class ViewController: UIViewController {
         }
     }
     
+    
     @IBAction func myScore(_ sender: Any) {
-      
     }
     
         
@@ -84,7 +85,22 @@ class ViewController: UIViewController {
                 timer.invalidate()
                 sweetLabel.isHidden = true
                 saltyLabel.isHidden = true
+                
+                if(score <= 1) {
+                          rackupMessage.text = "You get candy!"
+                          sweetImage.image = UIImage(named: "candy")
+                      }
+                      else if(score > 30 && score <= 50){
+                          rackupMessage.text = "You get chips!"
+                          saltyImage.image = UIImage(named: "chips")
+                }
+                    else if (score > 50 && score <= 100){
+                        rackupMessage.text = "You get both!"
+                        sweetImage.image = UIImage(named: "candy")
+                        saltyImage.image = UIImage(named: "chips")
+                    }
         }
+    }
 
     @IBAction func myReset(_ sender: Any) {
          score = 0
@@ -95,9 +111,9 @@ class ViewController: UIViewController {
                isTimerRunning = false
                sweetLabel.isHidden = false
                saltyLabel.isHidden = false
-               chars = Int(arc4random_uniform(20) + 2)
+                chars = Int(arc4random_uniform(10) + 2)
     }
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
