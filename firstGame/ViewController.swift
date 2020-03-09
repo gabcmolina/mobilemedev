@@ -86,18 +86,18 @@ class ViewController: UIViewController {
                 sweetLabel.isHidden = true
                 saltyLabel.isHidden = true
                 
-                if(score <= 1) {
+                if(score <= 30) {
                           rackupMessage.text = "You get candy!"
-                          sweetImage.image = UIImage(named: "candy")
+                          sweetImage.isHidden = false
                       }
                       else if(score > 30 && score <= 50){
                           rackupMessage.text = "You get chips!"
-                          saltyImage.image = UIImage(named: "chips")
+                          saltyImage.isHidden = false
                 }
-                    else if (score > 50 && score <= 100){
+                    else {
                         rackupMessage.text = "You get both!"
-                        sweetImage.image = UIImage(named: "candy")
-                        saltyImage.image = UIImage(named: "chips")
+                        sweetImage.isHidden = false
+                        saltyImage.isHidden = false
                     }
         }
     }
